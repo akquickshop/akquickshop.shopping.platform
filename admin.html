@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#092b62"><title>A K QUICK SHOP | Admin</title>
+<style>
+:root{--navy:#092b62;--gold:#f4bd35;--orange:#ed7928;--ink:#18243a;--muted:#66748a;--bg:#f3f6fb;--line:#e5eaf2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+header{background:linear-gradient(120deg,#071e49,var(--navy),#1a4e91);color:white;padding:20px 17px 24px;border-radius:0 0 22px 22px}
+.brand{font-size:22px;font-weight:900;letter-spacing:.3px}.tag{font-size:11px;color:#ffda79;letter-spacing:2px}.sub{font-size:13px;color:#e0e9f8;margin-top:7px}
+main{max-width:780px;margin:auto;padding:14px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 5px 18px #10264a09}
+h1{font-size:21px;margin:0 0 5px}h2{font-size:17px;margin:0 0 12px}.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.metric{background:#f5f7fb;border-radius:12px;padding:12px 5px;text-align:center}.metric b{display:block;color:var(--navy);font-size:23px}.metric span{font-size:11px;color:var(--muted)}
+.label{font-size:12px;color:var(--muted)}.value{font-weight:650;margin:3px 0 10px}.status{display:inline-block;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:800;background:#fff3d2;color:#855800}.status.ok{background:#e7f6ec;color:#126b39}.status.no{background:#fff0ef;color:#a3231b}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail{background:#f8f9fc;padding:10px;border-radius:10px;min-width:0}
+button{border:0;border-radius:10px;padding:11px 14px;font:inherit;font-size:13px;font-weight:750;margin:5px 5px 0 0;cursor:pointer}.approve{background:#e6f5eb;color:#116b39}.reject{background:#fff0ef;color:#a3231b}.reset{background:#edf2fa;color:#173d75}
+.note{background:#fff8e4;border-left:4px solid var(--gold);padding:12px;border-radius:8px;font-size:12px;line-height:1.55}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:15px}
+@media(max-width:420px){.details{grid-template-columns:1fr}.brand{font-size:20px}}
+</style></head><body>
+<header><div class="brand">A K QUICK SHOP</div><div class="tag">SHOP • SELL • EARN</div><div class="sub">ADMIN PANEL · विक्रेता आवेदन प्रबंधन</div></header>
+<main>
+<section class="card"><h1>एडमिन डैशबोर्ड</h1><div class="muted">विक्रेता आवेदन की समीक्षा करें और निर्णय दर्ज करें।</div>
+<div class="metrics"><div class="metric"><b id="pending">1</b><span>लंबित आवेदन</span></div><div class="metric"><b id="approved">0</b><span>मंज़ूर</span></div><div class="metric"><b id="rejected">0</b><span>अस्वीकृत</span></div></div></section>
+<section class="card" id="application"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h2>विक्रेता आवेदन #DEMO-001</h2><span id="status" class="status">लंबित समीक्षा</span></div>
+<div class="details">
+<div class="detail"><div class="label">दुकानदार का नाम</div><div class="value">अमन कुमार (डेमो)</div></div>
+<div class="detail"><div class="label">दुकान का नाम</div><div class="value">अमन जनरल स्टोर</div></div>
+<div class="detail"><div class="label">जिला</div><div class="value">लुधियाना</div></div>
+<div class="detail"><div class="label">व्यवसाय श्रेणी</div><div class="value">किराना और खाद्य</div></div>
+<div class="detail"><div class="label">डिलीवरी</div><div class="value">अपनी दुकान से</div></div>
+<div class="detail"><div class="label">मोबाइल</div><div class="value">नमूना नंबर छिपाया गया</div></div>
+</div>
+<h2 style="margin-top:17px">मंज़ूरी से पहले जाँच</h2>
+<ul class="muted"><li>दुकान और संपर्क जानकारी की पुष्टि</li><li>लागू PAN, GST और FSSAI दस्तावेज़ों की जाँच</li><li>बैंक खाते का अधिकृत सुरक्षित सत्यापन</li><li>विक्रेता नियमों और सहमति की पुष्टि</li></ul>
+<div id="actions"><button class="approve" id="yes">✓ मंज़ूरी दें</button><button class="reject" id="no">अस्वीकार करें</button></div>
+<p class="muted" id="message">यह नमूना आवेदन है। बटन दबाने पर केवल इसी पेज का डेमो स्टेटस बदलेगा।</p>
+<button class="reset" id="again" style="display:none">डेमो फिर से शुरू करें</button></section>
+<section class="card"><h2>सुरक्षा और गोपनीयता</h2><div class="note">यह फाइल केवल डिज़ाइन डेमो है। इसमें वास्तविक लॉगिन, सर्वर, डेटाबेस, दस्तावेज़ अपलोड या पहचान सत्यापन नहीं है। असली सिस्टम में एडमिन लॉगिन, सीमित अधिकार, एन्क्रिप्टेड दस्तावेज़, ऑडिट लॉग, बैकअप और सुरक्षा परीक्षण जरूरी होंगे।</div><p class="muted">किसी भी डेमो में असली आधार नंबर, बैंक विवरण, OTP, पासवर्ड या ग्राहक/दुकानदार के निजी दस्तावेज़ न डालें।</p></section>
+</main><footer>A K QUICK SHOP · Punjab · Admin Demo</footer>
+<script>
+let decision="pending";
+function render(){document.getElementById("pending").textContent=decision==="pending"?1:0;document.getElementById("approved").textContent=decision==="approved"?1:0;document.getElementById("rejected").textContent=decision==="rejected"?1:0;
+let s=document.getElementById("status");s.textContent=decision==="pending"?"लंबित समीक्षा":decision==="approved"?"डेमो: मंज़ूर":"डेमो: अस्वीकृत";s.className="status"+(decision==="approved"?" ok":decision==="rejected"?" no":"");
+document.getElementById("actions").style.display=decision==="pending"?"block":"none";document.getElementById("again").style.display=decision==="pending"?"none":"inline-block";
+document.getElementById("message").textContent=decision==="pending"?"यह नमूना आवेदन है। बटन दबाने पर केवल इसी पेज का डेमो स्टेटस बदलेगा।":decision==="approved"?"डेमो में आवेदन मंज़ूर दिखाया गया है। वास्तविक मंज़ूरी से पहले सत्यापन और रिकॉर्ड जरूरी हैं।":"डेमो में आवेदन अस्वीकृत दिखाया गया है। वास्तविक सिस्टम में कारण दर्ज करना जरूरी होगा।";}
+document.getElementById("yes").onclick=()=>{decision="approved";render()};document.getElementById("no").onclick=()=>{decision="rejected";render()};document.getElementById("again").onclick=()=>{decision="pending";render()};
+</script></body></html>
