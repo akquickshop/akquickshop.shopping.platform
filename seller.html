@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A K QUICK SHOP - Seller Registration</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f2f5fa;
+      color: #17233d;
+    }
+    .header {
+      background: #10264b;
+      color: #fff;
+      text-align: center;
+      padding: 24px 12px;
+      border-radius: 14px;
+    }
+    .header h1 { color: #f5bd45; margin: 0 0 8px; }
+    .container {
+      max-width: 600px;
+      margin: 22px auto;
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 3px 14px #00000012;
+    }
+    h2 { color: #10264b; }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #cbd2df;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: 0;
+      border-radius: 8px;
+      background: #e99a24;
+      color: #17233d;
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .note {
+      background: #fff5df;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    footer {
+      text-align: center;
+      color: #667085;
+      margin: 25px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>A K QUICK SHOP</h1>
+    <p>SHOP • SELL • EARN</p>
+    <p>विक्रेता पंजीकरण</p>
+  </header>
+
+  <main class="container">
+    <h2>अपनी दुकान जोड़ें</h2>
+    <p>हमारे ऑनलाइन मार्केटप्लेस पर विक्रेता बनने के लिए जानकारी भरें।</p>
+
+    <form id="sellerForm">
+      <label for="owner">दुकानदार का नाम</label>
+      <input id="owner" type="text" required placeholder="अपना नाम लिखें">
+
+      <label for="phone">मोबाइल नंबर</label>
+      <input id="phone" type="tel" required
+        pattern="[0-9]{10}" maxlength="10"
+        placeholder="10 अंकों का मोबाइल नंबर">
+
+      <label for="shop">दुकान का नाम</label>
+      <input id="shop" type="text" required placeholder="दुकान का नाम">
+
+      <label for="district">जिला</label>
+      <select id="district" required>
+        <option value="">अपना जिला चुनें</option>
+        <option>Amritsar</option>
+        <option>Bathinda</option>
+        <option>Faridkot</option>
+        <option>Fatehgarh Sahib</option>
+        <option>Fazilka</option>
+        <option>Ferozepur</option>
+        <option>Gurdaspur</option>
+        <option>Hoshiarpur</option>
+        <option>Jalandhar</option>
+        <option>Kapurthala</option>
+        <option>Ludhiana</option>
+        <option>Malerkotla</option>
+        <option>Mansa</option>
+        <option>Moga</option>
+        <option>Pathankot</option>
+        <option>Patiala</option>
+        <option>Rupnagar</option>
+        <option>SAS Nagar (Mohali)</option>
+        <option>Sangrur</option>
+        <option>Shaheed Bhagat Singh Nagar</option>
+        <option>Sri Muktsar Sahib</option>
+        <option>Tarn Taran</option>
+      </select>
+
+      <label for="category">दुकान की श्रेणी</label>
+      <select id="category" required>
+        <option value="">श्रेणी चुनें</option>
+        <option>कपड़े और फैशन</option>
+        <option>किराना और राशन</option>
+        <option>इलेक्ट्रॉनिक्स</option>
+        <option>मोबाइल और एक्सेसरीज़</option>
+        <option>जूते और चप्पल</option>
+        <option>घर और रसोई</option>
+        <option>ब्यूटी और पर्सनल केयर</option>
+        <option>खाने-पीने का सामान</option>
+        <option>अन्य</option>
+      </select>
+
+      <label for="delivery">डिलीवरी का तरीका</label>
+      <select id="delivery" required>
+        <option value="">तरीका चुनें</option>
+        <option>अपनी दुकान से डिलीवरी</option>
+        <option>कूरियर कंपनी से डिलीवरी</option>
+        <option>दोनों तरीके</option>
+      </select>
+
+      <div class="note">
+        यह अभी केवल शुरुआती डेमो फॉर्म है। इसमें भरी गई जानकारी
+        किसी सर्वर पर जमा नहीं होती। असली पंजीकरण के लिए सुरक्षित
+        बैकएंड और एडमिन की मंज़ूरी जोड़नी बाकी है।
+        अभी आधार नंबर, बैंक विवरण या OTP यहाँ न भरें।
+      </div>
+
+      <button type="submit">डेमो देखें</button>
+    </form>
+  </main>
+
+  <footer>
+    © A K QUICK SHOP
+  </footer>
+
+  <script>
+    document.getElementById("sellerForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("यह डेमो फॉर्म है। अभी आपका आवेदन जमा नहीं हुआ है।");
+    });
+  </script>
+
+</body>
+</html>
