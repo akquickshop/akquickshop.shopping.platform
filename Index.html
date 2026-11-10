@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A K QUICK SHOP</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #172033;
+}
+header {
+  background: #10233f;
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+  border-bottom: 5px solid #d6ad52;
+}
+header h1 { margin: 0; }
+header p { color: #f5d995; }
+main {
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 0 14px;
+}
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px #0001;
+}
+h2 { color: #10233f; }
+button {
+  background: #ef8a28;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 4px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.item {
+  background: #fff2dc;
+  padding: 18px;
+  text-align: center;
+  border-radius: 8px;
+}
+a { color: #10233f; }
+footer {
+  text-align: center;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>A K QUICK SHOP</h1>
+<p>SHOP • SELL • EARN</p>
+</header>
+
+<main>
+<section class="card">
+<h2 id="welcome">आपका स्वागत है!</h2>
+<p id="intro">
+पंजाब का ऑनलाइन शॉपिंग मार्केटप्लेस।
+खरीदें, बेचें और आगे बढ़ें।
+</p>
+<button onclick="changeLanguage('hi')">हिन्दी</button>
+<button onclick="changeLanguage('pa')">ਪੰਜਾਬੀ</button>
+<button onclick="changeLanguage('en')">English</button>
+</section>
+
+<section class="card">
+<h2>श्रेणियाँ / Categories</h2>
+<div class="grid">
+<div class="item">कपड़े</div>
+<div class="item">किराना</div>
+<div class="item">इलेक्ट्रॉनिक्स</div>
+<div class="item">घर और रसोई</div>
+<div class="item">ब्यूटी</div>
+<div class="item">अन्य सामान</div>
+</div>
+</section>
+
+<section class="card">
+<h2>आज के ऑफ़र</h2>
+<p>जल्द ही यहाँ उत्पाद और ऑफ़र दिखाई देंगे।</p>
+<p>नए उत्पादों के लिए जल्द वापस आएँ।</p>
+</section>
+
+<section class="card">
+<h2>दुकानदार बनें</h2>
+<p>अपनी दुकान को A K QUICK SHOP से जोड़ें।</p>
+<a href="seller.html">विक्रेता पंजीकरण यहाँ करें</a>
+</section>
+</main>
+
+<footer>
+© A K QUICK SHOP
+</footer>
+
+<script>
+function changeLanguage(language) {
+  const text = {
+    hi: ["आपका स्वागत है!", "पंजाब का ऑनलाइन शॉपिंग मार्केटप्लेस। खरीदें, बेचें और आगे बढ़ें।"],
+    pa: ["ਜੀ ਆਇਆਂ ਨੂੰ!", "ਪੰਜਾਬ ਦਾ ਆਨਲਾਈਨ ਖਰੀਦਦਾਰੀ ਮਾਰਕੀਟਪਲੇਸ।"],
+    en: ["Welcome!", "Punjab's online shopping marketplace. Shop, sell and grow."]
+  };
+  document.getElementById("welcome").textContent = text[language][0];
+  document.getElementById("intro").textContent = text[language][1];
+}
+</script>
+
+</body>
+</html>
