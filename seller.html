@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A K QUICK SHOP - Seller Registration</title>
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       padding: 20px;
@@ -14,6 +16,7 @@
       background: #f2f5fa;
       color: #17233d;
     }
+
     .header {
       background: #10264b;
       color: #fff;
@@ -21,7 +24,9 @@
       padding: 24px 12px;
       border-radius: 14px;
     }
+
     .header h1 { color: #f5bd45; margin: 0 0 8px; }
+
     .container {
       max-width: 600px;
       margin: 22px auto;
@@ -30,13 +35,16 @@
       border-radius: 14px;
       box-shadow: 0 3px 14px #00000012;
     }
+
     h2 { color: #10264b; }
+
     label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
     }
-    input, select, textarea {
+
+    input, select {
       width: 100%;
       padding: 13px;
       margin-top: 7px;
@@ -44,6 +52,7 @@
       border-radius: 8px;
       font-size: 16px;
     }
+
     button {
       width: 100%;
       margin-top: 22px;
@@ -54,14 +63,31 @@
       color: #17233d;
       font-size: 17px;
       font-weight: bold;
+      cursor: pointer;
     }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
     .note {
       background: #fff5df;
       padding: 12px;
       border-radius: 8px;
       font-size: 14px;
       line-height: 1.5;
+      margin-top: 18px;
     }
+
+    #message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+
     footer {
       text-align: center;
       color: #667085;
@@ -69,6 +95,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header class="header">
@@ -79,11 +106,17 @@
 
   <main class="container">
     <h2>अपनी दुकान जोड़ें</h2>
-    <p>हमारे ऑनलाइन मार्केटप्लेस पर विक्रेता बनने के लिए जानकारी भरें।</p>
+
+    <p>
+      हमारे ऑनलाइन मार्केटप्लेस पर विक्रेता बनने के लिए
+      अपनी जानकारी भरें।
+    </p>
 
     <form id="sellerForm">
+
       <label for="owner">दुकानदार का नाम</label>
-      <input id="owner" type="text" required placeholder="अपना नाम लिखें">
+      <input id="owner" type="text" required
+        placeholder="अपना नाम लिखें">
 
       <label for="phone">मोबाइल नंबर</label>
       <input id="phone" type="tel" required
@@ -91,7 +124,8 @@
         placeholder="10 अंकों का मोबाइल नंबर">
 
       <label for="shop">दुकान का नाम</label>
-      <input id="shop" type="text" required placeholder="दुकान का नाम">
+      <input id="shop" type="text" required
+        placeholder="दुकान का नाम">
 
       <label for="district">जिला</label>
       <select id="district" required>
@@ -143,24 +177,93 @@
       </select>
 
       <div class="note">
-        यह अभी केवल शुरुआती डेमो फॉर्म है। इसमें भरी गई जानकारी
-        किसी सर्वर पर जमा नहीं होती। असली पंजीकरण के लिए सुरक्षित
-        बैकएंड और एडमिन की मंज़ूरी जोड़नी बाकी है।
-        अभी आधार नंबर, बैंक विवरण या OTP यहाँ न भरें।
+        आवेदन जमा होने के बाद उसकी स्थिति एडमिन की
+        मंज़ूरी तक Pending रहेगी। अभी आधार नंबर,
+        बैंक विवरण या OTP न भरें।
       </div>
 
-      <button type="submit">डेमो देखें</button>
+      <button type="submit" id="submitBtn">
+        विक्रेता आवेदन जमा करें
+      </button>
+
+      <div id="message" role="status"></div>
+
     </form>
   </main>
 
-  <footer>
-    © A K QUICK SHOP
-  </footer>
+  <footer>© A K QUICK SHOP</footer>
+
+  <!-- Supabase JavaScript library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    document.getElementById("sellerForm").addEventListener("submit", function(event) {
+    const SUPABASE_URL =
+      "https://fpbsdpuqllxzwutrlbic.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_EZmYiRcyeuNm-gEiP7VmCQ_ZuqSQzo9";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const form = document.getElementById("sellerForm");
+    const button = document.getElementById("submitBtn");
+    const message = document.getElementById("message");
+
+    function showMessage(text, success) {
+      message.style.display = "block";
+      message.style.background = success ? "#e7f8ed" : "#fdeaea";
+      message.style.color = success ? "#176b35" : "#a12626";
+      message.textContent = text;
+    }
+
+    form.addEventListener("submit", async function(event) {
       event.preventDefault();
-      alert("यह डेमो फॉर्म है। अभी आपका आवेदन जमा नहीं हुआ है।");
+
+      if (!form.reportValidity()) return;
+
+      button.disabled = true;
+      button.textContent = "आवेदन जमा हो रहा है...";
+      message.style.display = "none";
+
+      const sellerData = {
+        owner_name: document.getElementById("owner").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        shop_name: document.getElementById("shop").value.trim(),
+        district: document.getElementById("district").value,
+        category: document.getElementById("category").value,
+        delivery_method: document.getElementById("delivery").value
+      };
+
+      try {
+        const { error } = await supabaseClient
+          .from("sellers")
+          .insert([sellerData]);
+
+        if (error) throw error;
+
+        showMessage(
+          "आपका विक्रेता आवेदन सफलतापूर्वक जमा हो गया है। एडमिन की मंज़ूरी का इंतज़ार करें।",
+          true
+        );
+
+        form.reset();
+
+      } catch (error) {
+        console.error("Seller registration error:", error);
+
+        showMessage(
+          "आवेदन जमा नहीं हुआ। कृपया इंटरनेट और Supabase की RLS Policy जाँचें। विवरण: " +
+          error.message,
+          false
+        );
+
+      } finally {
+        button.disabled = false;
+        button.textContent = "विक्रेता आवेदन जमा करें";
+      }
     });
   </script>
 
